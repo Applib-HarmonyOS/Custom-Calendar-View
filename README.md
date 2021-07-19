@@ -1,148 +1,145 @@
 # Custom-Calendar-View
-To use the CustomCalendarView in your application, you first need to add the library to your application. You can do this by either from Gradle, Maven or by directly downloading the source code form GitHub.
+Custom-Calendar-View for Harmony Os. To use the CustomCalendarView in your application, you first need to add the library to your application. You can do this by either from Gradle, Maven or by directly downloading the source code form GitHub.
 
-If you enjoy this library, don’t forget to follow me on Twitter [@npanigrahy](https://www.twitter.com/npanigrahy) or visit my [blog](https://stacktips.com/).
 
 ## Features
 Currently it supports the following features:
 * Next and previous month navigation
 * Allow various customization including background color for day, week and title
-* Set custom typeface using setCustomTypeFace() method.
+* Set custom font using setCustomTypeFace() method.
 * Show hide next previous month overflow days
 * Set custom day options for start day of week. By default it is set to Calendar.SUNDAY
 * Unlimited customizations for day of the month using custom Decorators.
 * Allow you to handle event when user changes month and day selection.
 
-![alt text][logo]
+## Source
+The code in this repository was inspired from [npanigrahy/Custom-Calendar-View](https://github.com/npanigrahy/Custom-Calendar-View). 
+We are very thankful to npanigrahy. 
 
-[logo]: http://stacktips.com/wp-content/uploads/2015/09/Custom-Calendar-View-Android.png "Custom Calendar View Library in Android"
+<img src = "images/CustomCalendarViewPics.jpg" height="350" >
 
-### Gradle
-**Step 1** Add the JitPack repository to your build file. Add it in your build.gradle at the end of repositories.
-
-```java
-  repositories {
-    maven { url "https://jitpack.io" }
-  }
+## Dependency
+1. For using customcalendarview module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
 ```
-
-**Step-2** Add the dependency in the form
-
-```java
 dependencies {
-    compile 'com.github.npanigrahy:Custom-Calendar-View:v1.0'
+        implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+        testImplementation 'junit:junit:4.13'
+        ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
+        implementation project(':customcalendarview');
 }
 ```
-### Maven
-```xml
-<repository>
-     <id>jitpack.io</id>
-     <url>https://jitpack.io</url>
-</repository>
+2. For using customcalendarview in separate application using jar file, add the jar file in the entry/libs folder and add the dependencies in entry/build.gradle file.
 ```
-**Step 2** Add the dependency in the form
-```xml
-<dependency>
-     <groupId>com.github.npanigrahy</groupId>
-     <artifactId>Custom-Calendar-View</artifactId>
-     <version>v1.0</version>
-</dependency>
-```
-### Sbt
-**Step-1** Add it in your build.sbt at the end of resolvers:
-```java
-resolvers += "jitpack" at "https://jitpack.io"
-```
-**Step-2** Add the dependency in the form
-```java
-libraryDependencies += "com.github.npanigrahy" % "Custom-Calendar-View" % "v1.0"
+dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        testImplementation 'junit:junit:4.13'
+}
 ```
 
 ## Using CustomCalendarView Library
 The GitHub project source includes a sample application, that is used for demonstrating the various features currently supported by this library. Once the library is added to your project, you can include the CustomCalendarView into your activity/fragment layout using the following code snippets.
 
-```xml
+```
 <com.stacktips.view.CustomCalendarView
-	android:id="@+id/calendar_view"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:background="#ffffff">
+	ohos:id="@+id/calendar_view"
+	ohos:width="match_parent"
+	ohos:height="wrap_content"
+	ohos:background_element="#ffffff">
 </com.stacktips.view.CustomCalendarView>
 ```
 The above code snippet will show the simple Calendar View with default design. Now, you can use the following attributes, to customize the appearance of calendar.
-```xml
+```
 <com.stacktips.view.CustomCalendarView
-        android:id="@+id/calendar_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/off_white"
-        app:calendarBackgroundColor="@color/off_white"
-        app:calendarTitleTextColor="@color/black"
-        app:currentDayOfMonthColor="@color/blue"
-        app:dayOfMonthTextColor="@color/black"
-        app:dayOfWeekTextColor="@color/black"
-        app:disabledDayBackgroundColor="@color/off_white"
-        app:disabledDayTextColor="@color/grey"
-        app:selectedDayBackgroundColor="@color/blue"
-        app:titleLayoutBackgroundColor="@color/white"
-        app:weekLayoutBackgroundColor="@color/white">
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:id="$+id:calendar_view"
+        ohos:background_element="$color:off_white"
+        app:calendarBackgroundColor="$color:off_white"
+        app:calendarTitleTextColor="$color:black"
+        app:currentDayOfMonthColor="$color:blue"
+        app:dayOfMonthTextColor="$color:black"
+        app:dayOfWeekTextColor="$color:black"
+        app:disabledDayBackgroundColor="$color:off_white"
+        app:disabledDayTextColor="$color:grey"
+        app:selectedDayBackgroundColor="$color:blue"
+        app:titleLayoutBackgroundColor="$color:white"
+        app:weekLayoutBackgroundColor="$color:white"
+        app:selectedDayTextColor="$color:black"
+        app:calendarTitleBackgroundColor = "$color:white">
 </com.stacktips.view.CustomCalendarView>
 ```
 Let us now, initialize the calendar view to control the various other appearance and behavior of calendar using the following methods.
-```java
+```
 //Initialize CustomCalendarView from layout
-calendarView = (CustomCalendarView) findViewById(R.id.calendar_view);
-
+calendarView = (CustomCalendarView) findComponentById(ResourceTable.Id_calendar_view);
+Locale locale = Locale.getDefault();
 //Initialize calendar with date
-Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
-
-//Show Monday as first date of week
+Calendar currentCalendar = Calendar.getInstance(locale);
+//Show monday as first date of week
 calendarView.setFirstDayOfWeek(Calendar.MONDAY);
-
 //Show/hide overflow days of a month
 calendarView.setShowOverflowDate(false);
-
 //call refreshCalendar to update calendar the view
 calendarView.refreshCalendar(currentCalendar);
-
 //Handling custom calendar events
 calendarView.setCalendarListener(new CalendarListener() {
     @Override
     public void onDateSelected(Date date) {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        Toast.makeText(MainActivity.this, df.format(date), Toast.LENGTH_SHORT).show();
+        ToastDialog toastDialog = new ToastDialog(getContext());
+        toastDialog.setText(df.format(date)).show();
     }
 
     @Override
     public void onMonthChanged(Date date) {
         SimpleDateFormat df = new SimpleDateFormat("MM-yyyy");
-        Toast.makeText(MainActivity.this, df.format(date), Toast.LENGTH_SHORT).show();
+        ToastDialog toastDialog = new ToastDialog(getContext());
+        toastDialog.setText(df.format(date)).show();
     }
 });
 ```
 
-## Using Custom TypeFace
+## Using Custom Font
 
-```java
-//Setting custom font
-final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Arch_Rival_Bold.ttf");
+```
+String fontFamily = "Arch_Rival_Bold.ttf";
+Font typeface = getFont(fontFamily);
 if (null != typeface) {
     calendarView.setCustomTypeface(typeface);
     calendarView.refreshCalendar(currentCalendar);
 }
 ```
-Custom Calendar View Library in Android Custom Font
+```
+private Font getFont(String fontFamily) {
+        byte[] buffer = null;
+        int bytesRead = 0;
+        FileOutputStream fileOutputStream = null;
+        File file = new File(this.getCacheDir(), fontFamily);
+        RawFileEntry rawFileEntry = this.getResourceManager().getRawFileEntry(RAW_FILE_PATH);
+        try {
+            Resource resource = rawFileEntry.openRawFile();
+            buffer = new byte[(int) rawFileEntry.openRawFileDescriptor().getFileSize()];
+            bytesRead = resource.read(buffer);
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(buffer, 0, bytesRead);
+            fileOutputStream.close();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        return new Font.Builder(file).makeItalic(true).build();
+}
+```
+Custom Calendar View Library in Harmony Os Custom Font
 
 ## Using Day Decorators
-```java
+```
 //adding calendar day decorators
 List decorators = new ArrayList<>();
 decorators.add(new ColorDecorator());
 calendarView.setDecorators(decorators);
 calendarView.refreshCalendar(currentCalendar);
-Custom Calendar View Library in Android Decorator
 ```
-<img src="http://stacktips.com/wp-content/uploads/2015/09/Custom-Calendar-View-Library-in-Android-Decorator.png" height="350">
+<img src = "images/Decorators.png" height="350" >
 
 ## License
 ```
@@ -162,3 +159,4 @@ Custom Calendar View Library in Android Decorator
  * limitations under the License.
  */
 ```
+

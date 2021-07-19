@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+
+    <include
+        ohos:height="match_parent"
+        ohos:layout="$layout:custom_calendar_title_layout"
+        ohos:width="match_parent"
+        ohos:id="$+id:titleLayout"/>
+
+    <include
+        ohos:height="match_parent"
+        ohos:layout="$layout:custom_calendar_weeks_layout"
+        ohos:width="match_parent"
+        ohos:id="$+id:weekLayout"/>
+
+    <DirectionalLayout
+        ohos:height="match_parent"
+        ohos:width="match_content"
+        ohos:id="$+id:daysContainer"
+        ohos:layout_alignment="center"
+        ohos:orientation="vertical">
+
+    </DirectionalLayout>
+
+</DirectionalLayout>

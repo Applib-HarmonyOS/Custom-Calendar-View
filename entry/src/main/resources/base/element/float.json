@@ -1,0 +1,20 @@
+{
+  "float": [
+    {
+      "name": "activity_horizontal_margin",
+      "value": "16vp"
+    },
+    {
+      "name": "activity_vertical_margin",
+      "value": "16vp"
+    },
+    {
+      "name": "app_bar_height",
+      "value": "180vp"
+    },
+    {
+      "name": "fab_margin",
+      "value": "16vp"
+    }
+  ]
+}

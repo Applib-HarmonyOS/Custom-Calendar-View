@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:width="match_parent"
+    ohos:orientation="vertical"
+    ohos:alignment="center">
+
+    <include
+        ohos:height="match_content"
+        ohos:layout="$layout:roboto_calendar_week_1"
+        ohos:width="match_parent"/>
+
+    <include
+        ohos:height="match_content"
+        ohos:layout="$layout:roboto_calendar_week_2"
+        ohos:width="match_parent"/>
+
+    <include
+        ohos:height="match_content"
+        ohos:layout="$layout:roboto_calendar_week_3"
+        ohos:width="match_parent"/>
+
+    <include
+        ohos:height="match_content"
+        ohos:layout="$layout:roboto_calendar_week_4"
+        ohos:width="match_parent"/>
+
+    <include
+        ohos:height="match_content"
+        ohos:layout="$layout:roboto_calendar_week_5"
+        ohos:width="match_parent"/>
+
+    <include
+        ohos:height="match_content"
+        ohos:layout="$layout:roboto_calendar_week_6"
+        ohos:width="match_parent"/>
+
+</DirectionalLayout>
