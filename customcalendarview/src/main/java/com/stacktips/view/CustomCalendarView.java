@@ -153,7 +153,6 @@ public class CustomCalendarView extends DirectionalLayout {
             mCurrentCalendar = Calendar.getInstance(Locale.getDefault());
             mCurrentCalendar.add(Calendar.MONTH, currentMonthIndex);
             refreshCalendar(mCurrentCalendar);
-
             if (calendarListener != null) {
                 calendarListener.onMonthChanged(mCurrentCalendar.getTime());
             }
@@ -188,8 +187,8 @@ public class CustomCalendarView extends DirectionalLayout {
     /**
      * Initialize the calendar week layout, considers start day.
      */
-    private void helperInitializeWeekLayout(String[] weekDaysArray, int i, int idDayOfWeek) {
-        String dayOfTheWeekString = weekDaysArray[i].toUpperCase();
+    private void helperInitializeWeekLayout(String[] weekDaysArray, int weekDaysIndex, int idDayOfWeek) {
+        String dayOfTheWeekString = weekDaysArray[weekDaysIndex].toUpperCase();
         if (dayOfTheWeekString.length() > 3) {
             dayOfTheWeekString = dayOfTheWeekString.substring(0, 3).toUpperCase();
         }
@@ -238,7 +237,6 @@ public class CustomCalendarView extends DirectionalLayout {
             }
         }
     }
-
 
     private void helperSetDaysInCalendar(Calendar calendar, Calendar startCalendar, int i, int monthEndIndex,
                                          int[] dayOfMonthIds) {
@@ -504,7 +502,6 @@ public class CustomCalendarView extends DirectionalLayout {
             final Calendar calendar = getTodaysCalendar();
             calendar.setFirstDayOfWeek(getFirstDayOfWeek());
             calendar.setTime(currentDate);
-
             final DayView dayView = getDayOfMonthText(calendar);
             if (dayView == null) {
                 return;
@@ -586,7 +583,6 @@ public class CustomCalendarView extends DirectionalLayout {
             case 38 :
                 childView =  mView.findComponentById(ResourceTable.Id_dayOfMonthText38);
                 break;
-
             case 39 :
                 childView =  mView.findComponentById(ResourceTable.Id_dayOfMonthText39);
                 break;

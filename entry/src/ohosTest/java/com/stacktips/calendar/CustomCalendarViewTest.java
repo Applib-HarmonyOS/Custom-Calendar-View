@@ -24,7 +24,6 @@ import ohos.agp.components.Attr;
 import ohos.agp.components.AttrSet;
 import ohos.agp.text.Font;
 import ohos.app.Context;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class CustomCalendarViewTests {
+public class CustomCalendarViewTest {
     private Context mContext;
     private AttrSet attrSet;
     private CustomCalendarView customCalendarView;
@@ -63,10 +62,6 @@ public class CustomCalendarViewTests {
                 return Optional.empty();
             }
         };
-    }
-    @After
-    public void tearDown() {
-        //tearDown
     }
     @Test
     public void testCustomTypeFace()

@@ -43,7 +43,6 @@ public class MainAbilitySlice extends AbilitySlice implements ListContainer.Item
         listView.setItemClickedListener(this);
     }
 
-
     @Override
     public void onItemClicked(ListContainer listContainer, Component component, int i, long l) {
         final String selectedValue = listData[i];
@@ -57,7 +56,6 @@ public class MainAbilitySlice extends AbilitySlice implements ListContainer.Item
             case "Customizing Calendar View":
                 present(new CustomisedCalendarSlice(), new Intent());
                 break;
-
             default:
                 break;
         }

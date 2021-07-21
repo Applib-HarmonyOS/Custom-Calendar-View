@@ -1,7 +1,6 @@
 # Custom-Calendar-View
 Custom-Calendar-View for Harmony Os. To use the CustomCalendarView in your application, you first need to add the library to your application. You can do this by either from Gradle, Maven or by directly downloading the source code form GitHub.
 
-
 ## Features
 Currently it supports the following features:
 * Next and previous month navigation
@@ -16,7 +15,7 @@ Currently it supports the following features:
 The code in this repository was inspired from [npanigrahy/Custom-Calendar-View](https://github.com/npanigrahy/Custom-Calendar-View). 
 We are very thankful to npanigrahy. 
 
-<img src = "images/CustomCalendarViewPics.jpg" height="350" >
+<img src = "images/CustomCalendarViewPics.jpg" height="400" >
 
 ## Dependency
 1. For using customcalendarview module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.

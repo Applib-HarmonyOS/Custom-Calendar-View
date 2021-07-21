@@ -98,8 +98,7 @@ public class CustomisedCalendarSlice extends AbilitySlice {
         RawFileEntry rawFileEntry = this.getResourceManager().getRawFileEntry(RAW_FILE_PATH);
         try (Resource resource = rawFileEntry.openRawFile();
              FileOutputStream fileOutputStream = new FileOutputStream(file);
-             RawFileDescriptor rawFileDescriptor = rawFileEntry.openRawFileDescriptor()
-             ) {
+             RawFileDescriptor rawFileDescriptor = rawFileEntry.openRawFileDescriptor()) {
             buffer = new byte[(int) rawFileDescriptor.getFileSize()];
             bytesRead = resource.read(buffer);
             fileOutputStream.write(buffer, 0, bytesRead);

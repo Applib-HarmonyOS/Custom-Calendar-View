@@ -10,7 +10,7 @@
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:id="$+id:demo_list"
-        ohos:margin="1vp"
-       />
+        ohos:margin="1vp">
+    </ListContainer>
 
 </DirectionalLayout>

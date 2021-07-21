@@ -76,7 +76,4 @@ public class SimpleCalendarSlice extends AbilitySlice {
             }
         });
     }
-
-
-
 }
