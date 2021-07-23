@@ -1,1 +1,1 @@
-include ':entry', ':customcalendarview'
+include ':entry', ':library'

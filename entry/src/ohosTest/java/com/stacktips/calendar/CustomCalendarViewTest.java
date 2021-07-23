@@ -38,6 +38,7 @@ public class CustomCalendarViewTest {
     private Context mContext;
     private AttrSet attrSet;
     private CustomCalendarView customCalendarView;
+
     @Before
     public void setUp() {
         mContext = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext();
@@ -63,6 +64,7 @@ public class CustomCalendarViewTest {
             }
         };
     }
+
     @Test
     public void testCustomTypeFace()
     {
@@ -71,6 +73,7 @@ public class CustomCalendarViewTest {
         customCalendarView.setCustomTypeface(customTypeface);
         assertEquals(customTypeface,customCalendarView.getCustomTypeface());
     }
+
     @Test
     public void testisOverflowDateVisible()
     {
@@ -79,6 +82,7 @@ public class CustomCalendarViewTest {
         customCalendarView.setShowOverflowDate(isOverFlowEnabled);
         assertEquals(isOverFlowEnabled,customCalendarView.isOverflowDateVisible());
     }
+
     @Test
     public void testSetDecorators()
     {
@@ -87,6 +91,7 @@ public class CustomCalendarViewTest {
         customCalendarView.setDecorators(decorators);
         assertEquals(decorators,customCalendarView.getDecorators());
     }
+
     @Test
     public void testSetFirstDayOfWeek()
     {
@@ -95,6 +100,7 @@ public class CustomCalendarViewTest {
         customCalendarView.setFirstDayOfWeek(firstDayOfWeek);
         assertEquals(firstDayOfWeek,customCalendarView.getFirstDayOfWeek());
     }
+
     @Test
     public void testSetCalendarListener()
     {
@@ -113,12 +119,14 @@ public class CustomCalendarViewTest {
         customCalendarView.setCalendarListener(calendarListener);
         assertEquals(calendarListener,customCalendarView.getCalendarListener());
     }
+
     @Test
     public void testCustomCalendarView()
     {
         customCalendarView = new CustomCalendarView(mContext,attrSet);
         assertNotNull(customCalendarView);
     }
+
     @Test
     public void testSetCurrentCalendar()
     {

@@ -1,3 +1,5 @@
+[![Build](https://github.com/applibgroup/Custom-Calendar-View/actions/workflows/main.yml/badge.svg)](https://github.com/applibgroup/Custom-Calendar-View/actions/workflows/main.yml)
+
 # Custom-Calendar-View
 Custom-Calendar-View for Harmony Os. To use the CustomCalendarView in your application, you first need to add the library to your application. You can do this by either from Gradle, Maven or by directly downloading the source code form GitHub.
 
@@ -12,14 +14,14 @@ Currently it supports the following features:
 * Allow you to handle event when user changes month and day selection.
 
 ## Source
-The code in this repository was inspired from [npanigrahy/Custom-Calendar-View](https://github.com/npanigrahy/Custom-Calendar-View). 
+The code in this repository was inspired from [npanigrahy/Custom-Calendar-View - v1.0](https://github.com/npanigrahy/Custom-Calendar-View). 
 We are very thankful to npanigrahy. 
 
 <img src = "images/CustomCalendarViewPics.jpg" height="400" >
 
 ## Dependency
-1. For using customcalendarview module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
-```
+1. For using library module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
+```java
 dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
         testImplementation 'junit:junit:4.13'
@@ -27,8 +29,8 @@ dependencies {
         implementation project(':customcalendarview');
 }
 ```
-2. For using customcalendarview in separate application using jar file, add the jar file in the entry/libs folder and add the dependencies in entry/build.gradle file.
-```
+2. For using library in separate application using jar file, add the jar file in the entry/libs folder and add the dependencies in entry/build.gradle file.
+```java
 dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         testImplementation 'junit:junit:4.13'
@@ -36,9 +38,9 @@ dependencies {
 ```
 
 ## Using CustomCalendarView Library
-The GitHub project source includes a sample application, that is used for demonstrating the various features currently supported by this library. Once the library is added to your project, you can include the CustomCalendarView into your activity/fragment layout using the following code snippets.
+The GitHub project source includes a sample application, that is used for demonstrating the various features currently supported by this library. Once the library is added to your project, you can include the CustomCalendarView into your Slice layout using the following code snippets.
 
-```
+```xml
 <com.stacktips.view.CustomCalendarView
 	ohos:id="@+id/calendar_view"
 	ohos:width="match_parent"
@@ -47,7 +49,7 @@ The GitHub project source includes a sample application, that is used for demons
 </com.stacktips.view.CustomCalendarView>
 ```
 The above code snippet will show the simple Calendar View with default design. Now, you can use the following attributes, to customize the appearance of calendar.
-```
+```xml
 <com.stacktips.view.CustomCalendarView
         ohos:height="match_content"
         ohos:width="match_parent"
@@ -68,39 +70,51 @@ The above code snippet will show the simple Calendar View with default design. N
 </com.stacktips.view.CustomCalendarView>
 ```
 Let us now, initialize the calendar view to control the various other appearance and behavior of calendar using the following methods.
-```
+```java
 //Initialize CustomCalendarView from layout
 calendarView = (CustomCalendarView) findComponentById(ResourceTable.Id_calendar_view);
 Locale locale = Locale.getDefault();
+
 //Initialize calendar with date
 Calendar currentCalendar = Calendar.getInstance(locale);
+
 //Show monday as first date of week
 calendarView.setFirstDayOfWeek(Calendar.MONDAY);
+
 //Show/hide overflow days of a month
 calendarView.setShowOverflowDate(false);
+
 //call refreshCalendar to update calendar the view
 calendarView.refreshCalendar(currentCalendar);
+
 //Handling custom calendar events
 calendarView.setCalendarListener(new CalendarListener() {
     @Override
     public void onDateSelected(Date date) {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         ToastDialog toastDialog = new ToastDialog(getContext());
-        toastDialog.setText(df.format(date)).show();
+        Component component = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_toast_dialog_layout, null, false);
+        Text text = (Text) component.findComponentById(ResourceTable.Id_toast_dialog_text);
+        text.setText(df.format(date));
+        toastDialog.setContentCustomComponent(component).show();
     }
 
     @Override
     public void onMonthChanged(Date date) {
         SimpleDateFormat df = new SimpleDateFormat("MM-yyyy");
         ToastDialog toastDialog = new ToastDialog(getContext());
-        toastDialog.setText(df.format(date)).show();
+        Component component = LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_toast_dialog_layout, null, false);
+        Text text = (Text) component.findComponentById(ResourceTable.Id_toast_dialog_text);
+        text.setText(df.format(date));
+        toastDialog.setContentCustomComponent(component).show();
     }
 });
 ```
 
 ## Using Custom Font
 
-```
+```java
+//Setting custom font
 String fontFamily = "Arch_Rival_Bold.ttf";
 Font typeface = getFont(fontFamily);
 if (null != typeface) {
@@ -108,7 +122,7 @@ if (null != typeface) {
     calendarView.refreshCalendar(currentCalendar);
 }
 ```
-```
+```java
 private Font getFont(String fontFamily) {
         byte[] buffer = null;
         int bytesRead = 0;
@@ -131,7 +145,7 @@ private Font getFont(String fontFamily) {
 Custom Calendar View Library in Harmony Os Custom Font
 
 ## Using Day Decorators
-```
+```java
 //adding calendar day decorators
 List decorators = new ArrayList<>();
 decorators.add(new ColorDecorator());

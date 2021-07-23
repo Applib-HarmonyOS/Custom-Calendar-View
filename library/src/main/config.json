@@ -1,0 +1,29 @@
+{
+  "app": {
+    "bundleName": "com.stacktips.calendar",
+    "vendor": "stacktips",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 5,
+      "target": 5,
+      "releaseType": "Release"
+    }
+  },
+  "deviceConfig": {
+  },
+  "module": {
+    "package": "com.stacktips.view",
+    "deviceType": [
+      "phone",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "library",
+      "moduleType": "har"
+    }
+  }
+}
