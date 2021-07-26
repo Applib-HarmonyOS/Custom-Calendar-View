@@ -26,6 +26,8 @@ import ohos.agp.window.dialog.ToastDialog;
 import ohos.global.resource.RawFileDescriptor;
 import ohos.global.resource.RawFileEntry;
 import ohos.global.resource.Resource;
+import ohos.hiviewdfx.HiLog;
+import ohos.hiviewdfx.HiLogLabel;
 import com.stacktips.calendar.ResourceTable;
 import com.stacktips.view.CalendarListener;
 import com.stacktips.view.CustomCalendarView;
@@ -43,6 +45,7 @@ import java.util.Locale;
 public class CustomisedCalendarSlice extends AbilitySlice {
     CustomCalendarView calendarView;
     private static final String RAW_FILE_PATH = "resources/rawfile/fonts/Arch_Rival_Bold.ttf";
+    private static final HiLogLabel label = new HiLogLabel(HiLog.LOG_APP, 0x00201, "CustomCalendarView");
 
     @Override
     protected void onStart(Intent intent) {
@@ -103,7 +106,7 @@ public class CustomisedCalendarSlice extends AbilitySlice {
             bytesRead = resource.read(buffer);
             fileOutputStream.write(buffer, 0, bytesRead);
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            HiLog.error(label, "Font is not identified.");
         }
         return new Font.Builder(file).makeItalic(true).build();
     }

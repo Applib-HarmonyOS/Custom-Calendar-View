@@ -30,6 +30,8 @@ import ohos.agp.utils.Color;
 import ohos.app.Context;
 import ohos.global.resource.NotExistException;
 import ohos.global.resource.Resource;
+import ohos.hiviewdfx.HiLog;
+import ohos.hiviewdfx.HiLogLabel;
 import ohos.media.image.ImageSource;
 import ohos.multimodalinput.event.TouchEvent;
 import com.stacktips.view.utils.CalendarUtils;
@@ -76,6 +78,7 @@ public class CustomCalendarView extends DirectionalLayout {
     private int currentMonthIndex = 0;
     private boolean isOverflowDateVisible = true;
     private int firstDayOfWeek = Calendar.SUNDAY;
+    private static final HiLogLabel label = new HiLogLabel(HiLog.LOG_APP, 0x00201, "CustomCalendarView");
 
     public CustomCalendarView(Context context) {
         this(context, null);
@@ -143,7 +146,7 @@ public class CustomCalendarView extends DirectionalLayout {
         try {
             resource = getContext().getResourceManager().getResource(imageId);
         } catch (IOException | NotExistException e) {
-            e.printStackTrace();
+            HiLog.error(label, "Button Image is not identified.");
         }
         ImageSource imageSource = ImageSource.create(resource, options);
         ImageSource.DecodingOptions decodingOptions = new ImageSource.DecodingOptions();

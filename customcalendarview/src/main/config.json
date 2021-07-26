@@ -22,7 +22,7 @@
     ],
     "distro": {
       "deliveryWithInstall": true,
-      "moduleName": "library",
+      "moduleName": "customcalendarview",
       "moduleType": "har"
     }
   }

@@ -137,7 +137,7 @@ private Font getFont(String fontFamily) {
             fileOutputStream.write(buffer, 0, bytesRead);
             fileOutputStream.close();
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            HiLog.error(label, "Font is not identified.");
         }
         return new Font.Builder(file).makeItalic(true).build();
 }
