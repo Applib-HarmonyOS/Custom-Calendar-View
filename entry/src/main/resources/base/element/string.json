@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "CustomCalendarView"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "simple_calendar",
+      "value": "Simple Calendar"
+    },
+    {
+      "name": "calendar_day_decorator",
+      "value": "Calendar Day Decorator"
+    },
+    {
+      "name": "customizing_custom_calendar",
+      "value": "Customizing Calendar View"
+    }
+  ]
+}

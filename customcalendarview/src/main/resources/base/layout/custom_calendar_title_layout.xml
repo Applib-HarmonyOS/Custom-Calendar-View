@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:width="match_parent"
+    ohos:clickable="true"
+    ohos:bottom_padding="$float:weekTitlePaddingBottom"
+    ohos:top_padding="$float:weekTitlePaddingTop">
+
+    <Image
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:id="$+id:leftButton"
+        ohos:align_parent_left="true"
+        ohos:align_parent_top="false"
+        ohos:vertical_center="true"
+        ohos:left_padding="$float:padding"
+        ohos:image_src="$media:left_button_faded"
+        />
+
+    <Text
+        ohos:text_size="16fp"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:id="$+id:dateTitle"
+        ohos:align_parent_top="false"
+        ohos:center_in_parent="true"
+        ohos:text="MONTH 2014"
+        />
+
+    <Image
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:align_parent_top="false"
+        ohos:align_parent_right="true"
+        ohos:vertical_center="true"
+        ohos:right_padding="$float:padding"
+        ohos:id="$+id:rightButton"
+        ohos:image_src="$media:right_button_faded"
+        />
+
+</DependentLayout>

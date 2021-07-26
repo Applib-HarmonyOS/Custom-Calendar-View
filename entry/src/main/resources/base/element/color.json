@@ -1,0 +1,56 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "red",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "blue",
+      "value": "#FF0A82B3"
+    },
+    {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
+      "name": "off_white",
+      "value": "#f1f5f7"
+    },
+    {
+      "name": "blue_selector",
+      "value": "#FF7E9196"
+    },
+    {
+      "name": "red_negative_progress",
+      "value": "#ff3333"
+    },
+    {
+      "name": "bg_color",
+      "value": "#e3ebee"
+    },
+    {
+      "name": "color_grey",
+      "value": "#2a2d30"
+    },
+    {
+      "name": "colorPrimary",
+      "value": "#009de0"
+    },
+    {
+      "name": "colorPrimaryDark",
+      "value": "#009de0"
+    },
+    {
+      "name": "background",
+      "value": "#E0E0E0"
+    },
+    {
+      "name": "grey",
+      "value": "#757575"
+    }
+  ]
+}

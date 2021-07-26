@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:width="match_parent"
+    ohos:orientation="horizontal"
+    ohos:total_weight="7"
+    ohos:id="$+id:weekRow6"
+    >
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:weight="1"
+        ohos:id="$+id:dayOfMonthContainer36">
+
+        <com.stacktips.view.DayView
+            ohos:text_size="14fp"
+            ohos:min_height="$float:minDayCellHeight"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:center_in_parent="true"
+            ohos:text="36"
+            ohos:id="$+id:dayOfMonthText36"
+            ohos:text_alignment="center"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:weight="1"
+        ohos:id="$+id:dayOfMonthContainer37">
+
+        <com.stacktips.view.DayView
+            ohos:text_size="14fp"
+            ohos:min_height="$float:minDayCellHeight"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:center_in_parent="true"
+            ohos:text="37"
+            ohos:id="$+id:dayOfMonthText37"
+            ohos:text_alignment="center"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:weight="1"
+        ohos:id="$+id:dayOfMonthContainer38">
+
+        <com.stacktips.view.DayView
+            ohos:text_size="14fp"
+            ohos:min_height="$float:minDayCellHeight"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:center_in_parent="true"
+            ohos:text="38"
+            ohos:id="$+id:dayOfMonthText38"
+            ohos:text_alignment="center"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:weight="1"
+        ohos:id="$+id:dayOfMonthContainer39">
+
+        <com.stacktips.view.DayView
+            ohos:text_size="14fp"
+            ohos:min_height="$float:minDayCellHeight"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:center_in_parent="true"
+            ohos:text="39"
+            ohos:id="$+id:dayOfMonthText39"
+            ohos:text_alignment="center"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:weight="1"
+        ohos:id="$+id:dayOfMonthContainer40">
+
+        <com.stacktips.view.DayView
+            ohos:text_size="14fp"
+            ohos:min_height="$float:minDayCellHeight"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:center_in_parent="true"
+            ohos:text="40"
+            ohos:id="$+id:dayOfMonthText40"
+            ohos:text_alignment="center"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:weight="1"
+        ohos:id="$+id:dayOfMonthContainer41">
+
+        <com.stacktips.view.DayView
+            ohos:text_size="14fp"
+            ohos:min_height="$float:minDayCellHeight"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:center_in_parent="true"
+            ohos:text="41"
+            ohos:id="$+id:dayOfMonthText41"
+            ohos:text_alignment="center"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:layout_alignment="vertical_center"
+        ohos:weight="1"
+        ohos:id="$+id:dayOfMonthContainer42">
+
+        <com.stacktips.view.DayView
+            ohos:text_size="14fp"
+            ohos:min_height="$float:minDayCellHeight"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:center_in_parent="true"
+            ohos:text="7"
+            ohos:id="$+id:dayOfMonthText42"
+            ohos:text_alignment="center"
+            />
+    </DependentLayout>
+
+</DirectionalLayout>

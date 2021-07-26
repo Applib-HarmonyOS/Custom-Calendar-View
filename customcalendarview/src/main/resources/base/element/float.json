@@ -1,0 +1,56 @@
+{
+  "float": [
+    {
+      "name": "dateTitleTextSize",
+      "value": "18fp"
+    },
+    {
+      "name": "dayOfWeekTextSize",
+      "value": "16fp"
+    },
+    {
+      "name": "underline_weight",
+      "value": "6vp"
+    },
+    {
+      "name": "underline_height",
+      "value": "2vp"
+    },
+    {
+      "name": "day_of_month_background_size",
+      "value": "32vp"
+    },
+    {
+      "name": "dayOfMonthIndicatorSize",
+      "value": "3vp"
+    },
+    {
+      "name": "dayOfMonthImageMarginTop",
+      "value": "20vp"
+    },
+    {
+      "name": "padding",
+      "value": "8vp"
+    },
+    {
+      "name": "calendarTitlePaddingTop",
+      "value": "8vp"
+    },
+    {
+      "name": "calendarTitlePaddingBottom",
+      "value": "8vp"
+    },
+    {
+      "name": "weekTitlePaddingTop",
+      "value": "8vp"
+    },
+    {
+      "name": "weekTitlePaddingBottom",
+      "value": "8vp"
+    },
+    {
+      "name": "minDayCellHeight",
+      "value": "40vp"
+    }
+  ]
+}
