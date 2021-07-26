@@ -15,7 +15,7 @@
         ohos:align_parent_top="false"
         ohos:vertical_center="true"
         ohos:left_padding="$float:padding"
-        ohos:image_src="$media:left_button"
+        ohos:image_src="$media:left_button_faded"
         />
 
     <Text
@@ -36,9 +36,7 @@
         ohos:vertical_center="true"
         ohos:right_padding="$float:padding"
         ohos:id="$+id:rightButton"
-        ohos:image_src="$media:right_button"
+        ohos:image_src="$media:right_button_faded"
         />
-
-
 
 </DependentLayout>

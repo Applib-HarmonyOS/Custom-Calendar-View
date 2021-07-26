@@ -14,7 +14,7 @@ Currently it supports the following features:
 * Allow you to handle event when user changes month and day selection.
 
 ## Source
-The code in this repository was inspired from [npanigrahy/Custom-Calendar-View - v1.0](https://github.com/npanigrahy/Custom-Calendar-View). 
+The code in this repository was inspired from [npanigrahy/Custom-Calendar-View - v1.1](https://github.com/npanigrahy/Custom-Calendar-View). 
 We are very thankful to npanigrahy. 
 
 <img src = "images/CustomCalendarViewPics.jpg" height="400" >

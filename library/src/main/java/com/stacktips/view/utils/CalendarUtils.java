@@ -12,12 +12,11 @@ public class CalendarUtils {
     }
 
     /**
-     * isSameMonth.
+     * Checks if both calendars are same month.
      *
      * @param c1 is calendar1.
-     *
      * @param c2 is calendar2.
-     *
+     * @return returns true if both are same month else false.
      */
     public static boolean isSameMonth(Calendar c1, Calendar c2) {
         if (c1 == null || c2 == null) {
@@ -40,10 +39,11 @@ public class CalendarUtils {
     }
 
     /**
-     * isSameDay.
+     * Check if both calendars are same day.
      *
      * @param cal1 is calendar1.
      * @param cal2 is calendar2.
+     * @return true if both are same days else false.
      */
     public static boolean isSameDay(Calendar cal1, Calendar cal2) {
         if (cal1 == null || cal2 == null) {
@@ -58,6 +58,7 @@ public class CalendarUtils {
      * getTotalWeeks.
      *
      * @param calendar is Calendar.
+     * @return total weeks.
      */
     public static int getTotalWeeks(Calendar calendar) {
         if (null == calendar) {
@@ -70,6 +71,7 @@ public class CalendarUtils {
      * getTotalWeeks.
      *
      * @param date is date.
+     * @return total weeks.
      */
     public static int getTotalWeeks(Date date) {
         Calendar cal = Calendar.getInstance();
@@ -78,9 +80,10 @@ public class CalendarUtils {
     }
 
     /**
-     * isPastDay.
+     * Checks if it is a past day.
      *
      * @param date is date.
+     * @return true if is a past day else false.
      */
     public static boolean isPastDay(Date date) {
         Calendar calendar = Calendar.getInstance();

@@ -34,7 +34,7 @@ public class MainAbilitySlice extends AbilitySlice implements ListContainer.Item
     protected void onStart(Intent intent) {
         super.onStart(intent);
         setUIContent(ResourceTable.Layout_ability_main);
-        listData = new String[]{"Simple Calendar", "Customizing Calendar View", "Calendar Day Decorator"};
+        listData = new String[]{"Simple Calendar", "Calendar Day Decorator", "Customizing Calendar View"};
         ListContainer listView = (ListContainer) findComponentById(ResourceTable.Id_demo_list);
         ListItemProvider listItemProvider = new ListItemProvider(this);
         listItemProvider.setItemCount(3);

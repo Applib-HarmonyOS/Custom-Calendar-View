@@ -8,8 +8,8 @@
     ohos:background_element="$color:bg_color">
 
     <com.stacktips.view.CustomCalendarView
-        ohos:height="match_parent"
-        ohos:width="match_content"
+        ohos:width="match_parent"
+        ohos:height="match_content"
         ohos:id="$+id:calendar_view"
         ohos:background_element="$color:off_white"
         app:calendarBackgroundColor="$color:off_white"

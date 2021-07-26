@@ -28,7 +28,12 @@ import ohos.agp.components.element.ShapeElement;
 import ohos.agp.text.Font;
 import ohos.agp.utils.Color;
 import ohos.app.Context;
+import ohos.global.resource.NotExistException;
+import ohos.global.resource.Resource;
+import ohos.media.image.ImageSource;
+import ohos.multimodalinput.event.TouchEvent;
 import com.stacktips.view.utils.CalendarUtils;
+import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
@@ -132,36 +137,60 @@ public class CustomCalendarView extends DirectionalLayout {
         }
     }
 
+    private void helperButtonImageChanger(Image image, int imageId) {
+        ImageSource.SourceOptions options = new ImageSource.SourceOptions();
+        Resource resource = null;
+        try {
+            resource = getContext().getResourceManager().getResource(imageId);
+        } catch (IOException | NotExistException e) {
+            e.printStackTrace();
+        }
+        ImageSource imageSource = ImageSource.create(resource, options);
+        ImageSource.DecodingOptions decodingOptions = new ImageSource.DecodingOptions();
+        image.setPixelMap(imageSource.createPixelmap(decodingOptions));
+    }
+
+    private boolean buttonImageChanger(Image image, int imageId, int imageIdFaded, TouchEvent touchEvent) {
+        int action = touchEvent.getAction();
+        if (action == TouchEvent.PRIMARY_POINT_DOWN) {
+            helperButtonImageChanger(image, imageId);
+            return true;
+        } else if (action == TouchEvent.PRIMARY_POINT_UP) {
+            helperButtonImageChanger(image, imageIdFaded);
+        }
+        return false;
+    }
+
     private void initializeCalendar() {
-        Image nextMonthButton;
-        Image previousMonthButton;
         int layoutId = ResourceTable.Layout_custom_calendar_layout;
         mView = LayoutScatter.getInstance(context).parse(layoutId, this, true);
-        previousMonthButton = (Image) mView.findComponentById(ResourceTable.Id_leftButton);
-        nextMonthButton = (Image) mView.findComponentById(ResourceTable.Id_rightButton);
-        previousMonthButton.setClickedListener(v -> {
-            currentMonthIndex--;
-            mCurrentCalendar = Calendar.getInstance(Locale.getDefault());
-            mCurrentCalendar.add(Calendar.MONTH, currentMonthIndex);
-            refreshCalendar(mCurrentCalendar);
-            if (calendarListener != null) {
-                calendarListener.onMonthChanged(mCurrentCalendar.getTime());
-            }
-        });
-        nextMonthButton.setClickedListener(v -> {
-            currentMonthIndex++;
-            mCurrentCalendar = Calendar.getInstance(Locale.getDefault());
-            mCurrentCalendar.add(Calendar.MONTH, currentMonthIndex);
-            refreshCalendar(mCurrentCalendar);
-            if (calendarListener != null) {
-                calendarListener.onMonthChanged(mCurrentCalendar.getTime());
-            }
-        });
+        Image previousMonthButton = (Image) mView.findComponentById(ResourceTable.Id_leftButton);
+        Image nextMonthButton = (Image) mView.findComponentById(ResourceTable.Id_rightButton);
+        previousMonthButton.setTouchEventListener((component, touchEvent) -> buttonImageChanger(previousMonthButton,
+                ResourceTable.Media_left_button, ResourceTable.Media_left_button_faded, touchEvent));
+        nextMonthButton.setTouchEventListener((component, touchEvent) -> buttonImageChanger(nextMonthButton,
+                ResourceTable.Media_right_button, ResourceTable.Media_right_button_faded, touchEvent));
+        previousMonthButton.setClickedListener(v -> changeMonth(false));
+        nextMonthButton.setClickedListener(v -> changeMonth(true));
         // Initialize calendar for current month
         Locale locale = Locale.getDefault();
         Calendar currentCalendar = Calendar.getInstance(locale);
         setFirstDayOfWeek(Calendar.SUNDAY);
         refreshCalendar(currentCalendar);
+    }
+
+    private void changeMonth(boolean isNext) {
+        if (isNext) {
+            currentMonthIndex++;
+        } else {
+            currentMonthIndex--;
+        }
+        mCurrentCalendar = Calendar.getInstance(Locale.getDefault());
+        mCurrentCalendar.add(Calendar.MONTH, currentMonthIndex);
+        refreshCalendar(mCurrentCalendar);
+        if (calendarListener != null) {
+            calendarListener.onMonthChanged(mCurrentCalendar.getTime());
+        }
     }
 
     /**
@@ -179,6 +208,7 @@ public class CustomCalendarView extends DirectionalLayout {
         dateTitle.setTextColor(calendarTitleTextColor);
         dateTitle.setText(dateText.toUpperCase() + " " + mCurrentCalendar.get(Calendar.YEAR));
         dateTitle.setTextColor(calendarTitleTextColor);
+        dateTitle.setFont(Font.DEFAULT_BOLD);
         if (null != getCustomTypeface()) {
             dateTitle.setFont(getCustomTypeface());
         }
@@ -187,21 +217,7 @@ public class CustomCalendarView extends DirectionalLayout {
     /**
      * Initialize the calendar week layout, considers start day.
      */
-    private void helperInitializeWeekLayout(String[] weekDaysArray, int weekDaysIndex, int idDayOfWeek) {
-        String dayOfTheWeekString = weekDaysArray[weekDaysIndex].toUpperCase();
-        if (dayOfTheWeekString.length() > 3) {
-            dayOfTheWeekString = dayOfTheWeekString.substring(0, 3).toUpperCase();
-        }
-        Text dayOfWeek = (Text) mView.findComponentById(idDayOfWeek);
-        dayOfWeek.setText(dayOfTheWeekString);
-        dayOfWeek.setTextColor(dayOfWeekTextColor);
-        if (null != getCustomTypeface()) {
-            dayOfWeek.setFont(getCustomTypeface());
-        }
-    }
-
     private void initializeWeekLayout() {
-        //Setting background color white
         Component titleLayout = mView.findComponentById(ResourceTable.Id_weekLayout);
         ShapeElement shapeElement = new ShapeElement();
         shapeElement.setShape(ShapeElement.RECTANGLE);
@@ -238,42 +254,17 @@ public class CustomCalendarView extends DirectionalLayout {
         }
     }
 
-    private void helperSetDaysInCalendar(Calendar calendar, Calendar startCalendar, int dateIndex, int monthEndIndex,
-                                         int[] dayOfMonthIds) {
-        ComponentContainer dayOfMonthContainer = (ComponentContainer) mView.findComponentById(dayOfMonthIds[0]);
-        DayView dayView = (DayView) mView.findComponentById(dayOfMonthIds[1]);
-        if (dayView == null) {
-            return;
+    private void helperInitializeWeekLayout(String[] weekDaysArray, int weekDaysIndex, int idDayOfWeek) {
+        String dayOfTheWeekString = weekDaysArray[weekDaysIndex];
+        if (dayOfTheWeekString.length() > 3) {
+            dayOfTheWeekString = dayOfTheWeekString.substring(0, 3).toUpperCase();
         }
-        //Apply the default styles
-        dayOfMonthContainer.setClickedListener(null);
-        dayView.bind(startCalendar.getTime(), getDecorators());
-        dayView.setVisibility(Component.VISIBLE);
-        dayOfMonthContainer.setTag(DAY_OF_MONTH_CONTAINER + dateIndex);
+        Text dayOfWeek = (Text) mView.findComponentById(idDayOfWeek);
+        dayOfWeek.setText(dayOfTheWeekString);
+        dayOfWeek.setTextColor(dayOfWeekTextColor);
         if (null != getCustomTypeface()) {
-            dayView.setFont(getCustomTypeface());
+            dayOfWeek.setFont(getCustomTypeface());
         }
-        if (CalendarUtils.isSameMonth(calendar, startCalendar)) {
-            dayOfMonthContainer.setClickedListener(onDayOfMonthClickListener);
-            ShapeElement shapeElement = new ShapeElement();
-            shapeElement.setShape(ShapeElement.RECTANGLE);
-            shapeElement.setRgbColor(RgbColor.fromArgbInt(calendarBackgroundColor.getValue()));
-            dayView.setBackground(shapeElement);
-            dayView.setTextColor(dayOfWeekTextColor);
-            //Set the current day color
-            markDayAsCurrentDay(startCalendar);
-        } else {
-            ShapeElement shapeElement = new ShapeElement();
-            shapeElement.setShape(ShapeElement.RECTANGLE);
-            shapeElement.setRgbColor(RgbColor.fromArgbInt(disabledDayBackgroundColor.getValue()));
-            dayView.setBackground(shapeElement);
-            dayView.setTextColor(disabledDayTextColor);
-            if (!isOverflowDateVisible() || (dateIndex >= 36 && (monthEndIndex / 7.0f) >= 1)) {
-                dayView.setVisibility(Component.HIDE);
-            }
-        }
-        dayView.decorate();
-        startCalendar.add(Calendar.DATE, 1);
     }
 
     private void setDaysInCalendar() {
@@ -452,7 +443,7 @@ public class CustomCalendarView extends DirectionalLayout {
                 helperSetDaysInCalendar(calendar, startCalendar, dateIndex, monthEndIndex, dayOfMonthIds);
                 break;
             case 32 :
-                dayOfMonthIds = new int[]{ResourceTable.Id_dayOfMonthContainer33, ResourceTable.Id_dayOfMonthText32};
+                dayOfMonthIds = new int[]{ResourceTable.Id_dayOfMonthContainer32, ResourceTable.Id_dayOfMonthText32};
                 helperSetDaysInCalendar(calendar, startCalendar, dateIndex, monthEndIndex, dayOfMonthIds);
                 break;
             case 33 :
@@ -498,6 +489,44 @@ public class CustomCalendarView extends DirectionalLayout {
             default:
                 break;
         }
+    }
+
+    private void helperSetDaysInCalendar(Calendar calendar, Calendar startCalendar, int dateIndex, int monthEndIndex,
+                                         int[] dayOfMonthIds) {
+        ComponentContainer dayOfMonthContainer = (ComponentContainer) mView.findComponentById(dayOfMonthIds[0]);
+        DayView dayView = (DayView) mView.findComponentById(dayOfMonthIds[1]);
+        if (dayView == null) {
+            return;
+        }
+        //Apply the default styles
+        dayOfMonthContainer.setClickedListener(null);
+        dayView.bind(startCalendar.getTime(), getDecorators());
+        dayView.setVisibility(Component.VISIBLE);
+        dayOfMonthContainer.setTag(DAY_OF_MONTH_CONTAINER + dateIndex);
+        if (null != getCustomTypeface()) {
+            dayView.setFont(getCustomTypeface());
+        }
+        if (CalendarUtils.isSameMonth(calendar, startCalendar)) {
+            dayOfMonthContainer.setClickedListener(onDayOfMonthClickListener);
+            ShapeElement shapeElement = new ShapeElement();
+            shapeElement.setShape(ShapeElement.RECTANGLE);
+            shapeElement.setRgbColor(RgbColor.fromArgbInt(calendarBackgroundColor.getValue()));
+            dayView.setBackground(shapeElement);
+            dayView.setTextColor(dayOfWeekTextColor);
+            //Set the current day color
+            markDayAsCurrentDay(startCalendar);
+        } else {
+            ShapeElement shapeElement = new ShapeElement();
+            shapeElement.setShape(ShapeElement.RECTANGLE);
+            shapeElement.setRgbColor(RgbColor.fromArgbInt(disabledDayBackgroundColor.getValue()));
+            dayView.setBackground(shapeElement);
+            dayView.setTextColor(disabledDayTextColor);
+            if (!isOverflowDateVisible() || (dateIndex >= 36 && (monthEndIndex / 7.0f) >= 1)) {
+                dayView.setVisibility(Component.HIDE);
+            }
+        }
+        dayView.decorate();
+        startCalendar.add(Calendar.DATE, 1);
     }
 
     private void clearDayOfTheMonthStyle(Date currentDate) {
@@ -767,7 +796,6 @@ public class CustomCalendarView extends DirectionalLayout {
      * markDayAsSelectedDay.
      *
      * @param currentDate is currentdate.
-     *
      */
     public void markDayAsSelectedDay(Date currentDate) {
         final Calendar currentCalendar = getTodaysCalendar();
