@@ -1,5 +1,5 @@
 [![Build](https://github.com/applibgroup/Custom-Calendar-View/actions/workflows/main.yml/badge.svg)](https://github.com/applibgroup/Custom-Calendar-View/actions/workflows/main.yml)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=applibgroup_Custom-Calendar-View&metric=alert_status)](https://sonarcloud.io/dashboard?id=applibgroup_Custom-Calendar-View)
 # Custom-Calendar-View
 Custom-Calendar-View for Harmony Os. To use the CustomCalendarView in your application, you first need to add the library to your application. You can do this by either from Gradle, Maven or by directly downloading the source code form GitHub.
 
