@@ -35,6 +35,14 @@ dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         testImplementation 'junit:junit:4.13'
 }
+
+```
+3. For using CustomCalendarView from a remote repository in separate application, add the below dependencies in entry/build.gradle file.
+```java
+dependencies {
+	implementation 'dev.applibgroup:customcalendarview:1.0.0'
+	testCompile 'junit:junit:4.13'
+}
 ```
 
 ## Using CustomCalendarView Library
